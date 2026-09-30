@@ -15,27 +15,51 @@ from pathlib import Path
 # This section defines all the input and output locations for your project.
 
 try:
-    # Gets the directory where your script (e.g., run_analysis.py) is located
     SCRIPT_DIR = Path(__file__).parent.resolve()
 except NameError:
-    # Fallback for running in an interactive environment (like a notebook)
     SCRIPT_DIR = Path.cwd()
 
-# --- Input Data Directories ---
-DATA_DIR = SCRIPT_DIR.parent.parent / 'haddata'
 
-# Paths to the specific datasets
-SST_PATH = str(DATA_DIR / 'Had' / '*.nc')
-GPCC_PATH = str(DATA_DIR / 'gppc' / '*.nc')
-AMIP_BASE_DIR = DATA_DIR / 'AMIP'
+# --- Main folder on external drive ---
+OUTPUT_DIR = Path(
+    r"D:\Final thesis\regression_script\unified_analysis_output"
+)
+
+# --- Input Data Directory ---
+DATA_DIR = OUTPUT_DIR / "haddata"
+
+# Paths to specific datasets
+SST_PATH = str(DATA_DIR / "Had" / "*.nc")
+GPCC_PATH = str(DATA_DIR / "gpcc" / "*.nc")
+AMIP_BASE_DIR = DATA_DIR / "AMIP"
+
+# Still points to the old server — change this later if needed
 CMIP_BASE_DIR = Path("/data/reloclim/normal/CMIP6/CMIP")
 
-# --- Output Directory ---
-# A single, unified folder for all results and figures
-OUTPUT_DIR = SCRIPT_DIR / 'unified_analysis_output'
-OUTPUT_DIR.mkdir(parents=True, exist_ok=True) # This creates the folder if it doesn't exist
-FIGURE_DIR = OUTPUT_DIR / 'figures'
+
+# --- Figure Directory ---
+FIGURE_DIR = OUTPUT_DIR / "figures"
+
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 FIGURE_DIR.mkdir(parents=True, exist_ok=True)
+
+
+
+# --- Input Data Directories ---
+#DATA_DIR = SCRIPT_DIR.parent.parent / 'haddata'
+
+# Paths to the specific datasets
+#SST_PATH = str(DATA_DIR / 'Had' / '*.nc')
+#GPCC_PATH = str(DATA_DIR / 'gppc' / '*.nc')
+#AMIP_BASE_DIR = DATA_DIR / 'AMIP'
+#CMIP_BASE_DIR = Path("/data/reloclim/normal/CMIP6/CMIP")
+
+# --- Output Directory ---
+# 
+#OUTPUT_DIR = SCRIPT_DIR / 'unified_analysis_output'
+#OUTPUT_DIR.mkdir(parents=True, exist_ok=True) # This creates the folder if it doesn't exist
+#FIGURE_DIR = OUTPUT_DIR / 'figures'
+#FIGURE_DIR.mkdir(parents=True, exist_ok=True)
 # --- Target Grid ---
 # A standard 1.0 x 1.0 degree grid for all regridding
 DS_TARGET = xr.Dataset(

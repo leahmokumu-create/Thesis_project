@@ -3,12 +3,19 @@
 # Other scripts will import these functions (e.g., from analysis_lib import nan_detrend).
 # --- Standard Library Imports ---
 import sys
+import os
+
+os.environ["ESMFMKFILE"] = (
+    r"C:\Users\leahm\miniconda3\envs\thesis311\Library\lib\esmf.mk"
+)
+
+import xesmf as xe
 from collections import defaultdict
 import numpy as np
 import xarray as xr
 import dask.array as da
 import pandas as pd
-import xesmf as xe
+#import xesmf as xe
 from scipy import stats
 from scipy.signal import detrend
 from scipy.stats import t as t_dist
